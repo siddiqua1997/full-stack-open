@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const Person = require('./models/persons')
 
@@ -58,10 +57,10 @@ app.post('/api/persons', (request, response, next) => {
   })
 
   person.save()
-  .then((savedNote) => {
-    response.json(savedNote)
-  })
-  .catch(error => next(error))
+    .then((savedNote) => {
+      response.json(savedNote)
+    })
+    .catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
@@ -85,7 +84,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then((result) => {
+    .then(() => {
       response.status(204).end()
     })
     .catch((error) => next(error))
